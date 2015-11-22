@@ -33,5 +33,8 @@
 	<a href="javascript:execute('Fornecedor','goFind');">Fornecedor</a>
 </div>
 <div>
+	<a href="javascript:execute('Veiculo','goFind');">Veiculo</a>
+</div>
+<div>
 	<a href="javascript:doLogout();">Sair</a>
 </div>

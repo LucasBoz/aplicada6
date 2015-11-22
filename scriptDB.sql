@@ -11,6 +11,13 @@ CREATE TABLE modelo
 	marca integer REFERENCES marca (id) NOT NULL 
 );
 
+CREATE TABLE usuario 
+(
+	idusuario serial PRIMARY KEY,
+	login character varying NOT NULL,
+	senha varchar NOT NULL
+);
+
 CREATE TABLE cliente 
 (	idcliente serial PRIMARY KEY,
 	nome character varying NOT NULL,
@@ -28,8 +35,8 @@ CREATE TABLE veiculo (
 	idveiculo serial PRIMARY KEY,
 	placa character varying NOT NULL,
 	chassi character varying NOT NULL,
-	modelo integer REFERENCES modelo(id),
-	cliente integer REFERENCES cliente(id),
+	idmodelo integer REFERENCES modelo(id),
+	idcliente integer REFERENCES cliente(id),
 	cor character varying NOT NULL
 );
  

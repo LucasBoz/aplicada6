@@ -32,15 +32,15 @@
 	
 	<script type="text/javascript">		
 		function validateFields() {
-			if (document.getElementById("descricao").value == "") {
+			if (document.getElementById("placa").value == "") {
 				alert("Descrição é obrigatória!");
-				document.getElementById("descricao").focus();
+				document.getElementById("placa").focus();
 				return false;
 			}
 			
-			if (document.getElementById("marca").value == "") {
+			if (document.getElementById("modelo").value == "") {
 				alert("Marca é obrigatória!");
-				document.getElementById("marca").focus();
+				document.getElementById("modelo").focus();
 				return false;
 			}
 			return true;
@@ -98,6 +98,10 @@
 			<div class="label">Chassi:</div>
 			<div class="field">
 				<input value="<%=(veiculo.getChassi() != null) ? veiculo.getChassi() : ""%>" type="text" name="chassi" id="chassi" style="width:400px;" maxlength="100">
+			</div>
+			<div class="label">Cor:</div>
+			<div class="field">
+				<input value="<%=(veiculo.getCor() != null) ? veiculo.getCor() : ""%>" type="text" name="cor" id="cor" style="width:400px;" maxlength="100">
 			</div>
 			<div class="label">Modelo:</div>
 			<div class="field">

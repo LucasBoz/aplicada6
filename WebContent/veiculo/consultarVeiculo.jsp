@@ -150,6 +150,7 @@
 <%
 	for(int i=0; i<listVeiculo.length; i++) {
 		Veiculo veiculo = (Veiculo) listVeiculo[i];
+		System.out.print("ddd");
 %>
 				<tr>
 					<td style="width:60px;"><%=veiculo.getIdVeiculo() %></td>

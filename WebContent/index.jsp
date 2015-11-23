@@ -25,7 +25,7 @@
 			</div>
 			<div class="label">Senha:</div>
 			<div class="field">
-				<input type="text" name="senha" id="senha" style="width:200px;" maxlength="100">
+				<input type="password" name="senha" id="senha" style="width:200px;" maxlength="100">
 			</div>
 			<div class="divbotoes">
 				<input type="button" value="Acessar" onclick="doLogin();">

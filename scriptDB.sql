@@ -1,6 +1,6 @@
 CREATE DATABASE aplicada6; 
 CREATE TABLE marca
-(	idMarca serial PRIMARY KEY,
+(	idmarca serial PRIMARY KEY,
 	descricao character varying
 );
 
@@ -8,7 +8,7 @@ CREATE TABLE modelo
 (
 	idmodelo serial PRIMARY KEY,
 	descricao character varying NOT NULL,
-	marca integer REFERENCES marca (id) NOT NULL 
+	idmarca integer REFERENCES marca NOT NULL 
 );
 
 CREATE TABLE usuario 
@@ -35,8 +35,8 @@ CREATE TABLE veiculo (
 	idveiculo serial PRIMARY KEY,
 	placa character varying NOT NULL,
 	chassi character varying NOT NULL,
-	idmodelo integer REFERENCES modelo(id),
-	idcliente integer REFERENCES cliente(id),
+	idmodelo integer REFERENCES modelo,
+	idcliente integer REFERENCES cliente,
 	cor character varying NOT NULL
 );
  

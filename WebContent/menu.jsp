@@ -39,5 +39,11 @@
 	<a href="javascript:execute('Produto','goFind');">Produto</a>
 </div>
 <div>
+	<a href="javascript:execute('Veiculo','goFind');">Veiculo</a>
+</div>
+<div>
+	<a href="javascript:execute('Venda','goFind');">Venda</a>
+</div>
+<div style="background: pink;">
 	<a href="javascript:doLogout();">Sair</a>
 </div>

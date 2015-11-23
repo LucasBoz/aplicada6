@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="divtop">
-		<div class="divlogo"><img src="./img/logo.png" style="height:100px;"></div>
+		<div class="divlogo"><img src="./img/jailson.jpg" style="height:100px;"></div>
 		<div class="divtitulo">SISTEMA DE CONTROLE DE MECÂNICA</div>		
 	</div>
 	<div class="divbottom">

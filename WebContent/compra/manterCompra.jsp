@@ -1,21 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="br.edu.udc.aplicada6.session.Session" %>
-<%@ page import="br.edu.udc.aplicada6.session.SessionCliente" %>
+<%@ page import="br.edu.udc.aplicada6.session.SessionFornecedor" %>
 <%@ page import="br.edu.udc.aplicada6.session.SessionCompra" %>
 <%@ page import="br.edu.udc.aplicada6.session.SessionVeiculo" %>
-<%@ page import="br.edu.udc.aplicada6.entity.Cliente" %>
+<%@ page import="br.edu.udc.aplicada6.entity.Fornecedor" %>
 <%@ page import="br.edu.udc.aplicada6.entity.Compra" %>
 <%@ page import="br.edu.udc.aplicada6.entity.Veiculo" %>
 <%
 	String mensagem = (String) request.getAttribute("msg");
-	Venda venda = (Venda) request.getAttribute("object");
-	if (venda == null) {
-		venda = new Venda();
+	Compra Compra = (Compra) request.getAttribute("object");
+	if (Compra == null) {
+		Compra = new Compra();
 	}
 	
-	Object listCliente[] = (Object[]) request.getAttribute("listCliente");
-	if (listCliente == null) {
-		listCliente = new Object[0];
+	Object listFornecedor[] = (Object[]) request.getAttribute("listFornecedor");
+	if (listFornecedor == null) {
+		listFornecedor = new Object[0];
 	}
 	
 	Object listVeiculo[] = (Object[]) request.getAttribute("listVeiculo");
@@ -28,7 +28,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Manter Venda</title>
+	<title>Manter Compra</title>
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 	
 	<script type="text/javascript">		
@@ -83,66 +83,46 @@
 	</script>	
 </head>
 <body onload="message();">
-	<div class="divtitulopagina">Manter Venda</div>
+	<div class="divtitulopagina">Manter Compra</div>
 	<fieldset class="fieldset">
 		<form action="./dispatcher" method="post" name="form" id="form">
 			<input type="hidden" name="newAction" id="newAction">
-			<input type="hidden" name="entityName" id="entityName" value="Venda">
+			<input type="hidden" name="entityName" id="entityName" value="Compra">
 			<div class="label">Código:</div>
 			<div class="field">
-				<input value="<%=(venda.getIdVenda() != null) ? venda.getIdVenda() : ""%>" type="text" name="idVenda" id="idVenda" style="width:50px;" readOnly maxlength="9">
+				<input value="<%=(Compra.getIdCompra() != null) ? Compra.getIdCompra() : ""%>" type="text" name="idCompra" id="idCompra" style="width:50px;" readOnly maxlength="9">
 			</div>
-			<div class="label">Descricao:</div>
+			<div class="label">Quantidade:</div>
 			<div class="field">
-				<input value="<%=(venda.getDescricao() != null) ? venda.getDescricao() : ""%>" type="text" name="descricao" id="descricao" style="width:400px;" maxlength="100">
+				<input value="<%=(Compra.getDescricao() != null) ? Compra.getDescricao() : ""%>" type="text" name="descricao" id="descricao" style="width:400px;" maxlength="100">
 			</div>
 			<div class="label">Valor:</div>
 			<div class="field">
-				<input value="<%=(venda.getValor() != null) ? venda.getValor() : ""%>" type="text" name="valor" id="valor" style="width:150px;" maxlength="100">
+				<input value="<%=(Compra.getValor() != null) ? Compra.getValor() : ""%>" type="text" name="valor" id="valor" style="width:150px;" maxlength="100">
 			</div>
 			
-			<div class="label">Cliente:</div>
+			<div class="label">Fornecedor:</div>
 			<div class="field">
-				<select name="cliente" id="cliente" style="width:150px;">
+				<select name="Fornecedor" id="Fornecedor" style="width:150px;">
 					<option value=""></option>
 					
 		
 <%
-	for(int i=0; i<listCliente.length; i++) {
-		Cliente clienteAux = (Cliente) listCliente[i];
+	for(int i=0; i<listFornecedor.length; i++) {
+		Fornecedor FornecedorAux = (Fornecedor) listFornecedor[i];
 		Boolean bSelected = false;
-		if ((venda.getCliente() != null) && 
-			(venda.getCliente().getIdCliente() == clienteAux.getIdCliente())) {
+		if ((Compra.getFornecedor() != null) && 
+			(Compra.getFornecedor().getIdFornecedor() == FornecedorAux.getIdFornecedor())) {
 			bSelected = true;
 		}
 %>
-					<option <%=(bSelected) ? "selected" : "" %> value="<%=clienteAux.getIdCliente()%>"><%=clienteAux.getIdCliente()%></option>	
+					<option <%=(bSelected) ? "selected" : "" %> value="<%=FornecedorAux.getIdFornecedor()%>"><%=FornecedorAux.getIdFornecedor()%></option>	
 <%
 	}
 %>
 				</select>
 			</div>
 			
-			
-				<div class="label">Veiculo:</div>
-			<div class="field">
-				<select name="veiculo" id="veiculo" style="width:150px;">
-					<option value=""></option>		
-			<%
-		for(int i=0; i<listVeiculo.length; i++) {
-			Veiculo veiculoAux = (Veiculo) listVeiculo[i];
-			Boolean bSelected = false;
-			if ((venda.getVeiculo() != null) && 
-				(venda.getVeiculo().getIdVeiculo() == veiculoAux.getIdVeiculo())) {
-				bSelected = true;
-			}
-%>
-					<option <%=(bSelected) ? "selected" : "" %> value="<%=veiculoAux.getIdVeiculo()%>"><%=veiculoAux.getPlaca()%></option>				
-<%
-	}
-%>
-				</select>
-			</div>
 			
 <!-- 			<div class="label">Placa:</div> -->
 <!-- 			<div class="field"> -->
@@ -153,20 +133,20 @@
 <%-- 				<input value="<%=(veiculo.getChassi() != null) ? veiculo.getChassi() : ""%>" type="text" name="chassi" id="chassi" style="width:400px;" maxlength="100"> --%>
 <!-- 			</div> -->
 
-<!-- 						<div class="label">Cliente:</div> -->
+<!-- 						<div class="label">Fornecedor:</div> -->
 <!-- 			<div class="field"> -->
-<!-- 				<select name="cliente" id="cliente" style="width:150px;"> -->
+<!-- 				<select name="Fornecedor" id="Fornecedor" style="width:150px;"> -->
 <!-- 					<option value=""></option> -->
 <%
-// 	for(int i=0; i<listCliente.length; i++) {
-// 		Cliente clienteAux = (Cliente) listCliente[i];
+// 	for(int i=0; i<listFornecedor.length; i++) {
+// 		Fornecedor FornecedorAux = (Fornecedor) listFornecedor[i];
 // 		Boolean bSelected = false;
-// 		if ((veiculo.getCliente() != null) && 
-// 			(veiculo.getCliente().getIdCliente() == clienteAux.getIdCliente())) {
+// 		if ((veiculo.getFornecedor() != null) && 
+// 			(veiculo.getFornecedor().getIdFornecedor() == FornecedorAux.getIdFornecedor())) {
 // 			bSelected = true;
 // 		}
 %>
-<%-- 					<option <%=(bSelected) ? "selected" : "" %> value="<%=clienteAux.getIdCliente() %>"><%=clienteAux.getIdCliente() %></option>	 --%>
+<%-- 					<option <%=(bSelected) ? "selected" : "" %> value="<%=FornecedorAux.getIdFornecedor() %>"><%=FornecedorAux.getIdFornecedor() %></option>	 --%>
 <%
 // 	}
 %>

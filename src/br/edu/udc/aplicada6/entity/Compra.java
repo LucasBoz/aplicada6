@@ -23,12 +23,6 @@ public class Compra {
 	@Column(name="idfornecedor",type=Column.OBJECT)
 	private Fornecedor fornecedor;
 	
-	/*		
-	@Column(name="idtemcompra",type=Column.OBJECT)
-	private List<ItemCompra> listItemCompra;
-	
-	
-	private List<ItemServico> listItemServico;*/
 	
 	@Column(name="datav",type=Column.DATE)
 	private Calendar datav;
@@ -39,10 +33,6 @@ public class Compra {
 	@Column(name="valor", nullable=false, type=Column.FLOAT)
 	private Float valor;
 	
-	
-	
-	
-
 
 	public Integer getIdCompra() {
 		return idCompra;
@@ -59,17 +49,7 @@ public class Compra {
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
-/*
-	public List<ItemCompra> getListItemCompra() {
-		return listItemCompra;
-	}
 
-	public void setListItemCompra(List<ItemCompra> listItemCompra) {
-		this.listItemCompra = listItemCompra;
-	}
-
-
-*/
 	public Calendar getDatav() {
 		return datav;
 	}

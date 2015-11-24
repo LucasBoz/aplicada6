@@ -121,6 +121,9 @@
 		<form action="./dispatcher" method="post" name="form" id="form">
 			<input type="hidden" name="newAction" id="newAction">
 			<input type="hidden" name="entityName" id="entityName" value="ItemVenda">
+			<input type="hidden" name="id" id="id">
+			<input type="hidden" value="<%=request.getParameter("idvenda") %>" name="idvenda" id="idvenda">
+			
 			<div class="label">Código:</div>
 			
 			<div class="field">
@@ -163,7 +166,7 @@
 			<div class="label">Venda:</div>
 			<div class="field">
 			
-				<input name="venda" id="venda" readonly style="width:150px;" value="<%=request.getParameter("id")%>" >
+				<input name="venda" id="venda" readonly style="width:150px;" value="<%=request.getParameter("idvenda")%>" >
 
 			</div>
 			
@@ -200,7 +203,7 @@
 <!-- 			</div> -->
 			<div class="divbotoes">
 				<input type="button" value="Add o Item" onclick="save();">
-				<input type="button" value="Voltar" onclick="voutar(<%=request.getParameter("id")%>);">
+				<input type="button" value="Voltar" onclick="voutar(<%=request.getParameter("idvenda")%>);">
 			</div>
 		</form>
 		
@@ -222,7 +225,7 @@
 		ItemVenda itemVenda = (ItemVenda) listItemVenda[i];
 		
 		float total =+ itemVenda.getValor();	
-		if(Integer.parseInt(request.getParameter("id")) == itemVenda.getVenda().getIdVenda()){
+		if(Integer.parseInt(request.getParameter("idvenda")) == itemVenda.getVenda().getIdVenda()){
 		
 %>		
 

@@ -75,7 +75,7 @@
 		function addservico(id) {
 			document.getElementById("entityName").value = "ItemServico"
 			document.getElementById("newAction").value = "detail";
-			document.getElementById("id").value = id;
+			document.getElementById("idvenda").value = id;
 			document.getElementById("form").submit();
 		}	
 		function removeGrid(id) {
@@ -93,6 +93,7 @@
 		<form action="./dispatcher" method="post" name="form" id="form">
 			<input type="hidden" name="newAction" id="newAction">
 			<input type="hidden" name="id" id="id">
+			<input type="hidden" name="idvenda" id="idvenda">
 			<input type="hidden" name="entityName" id="entityName" value="Venda">
 			<div class="label">Código:</div>
 			<div class="field">

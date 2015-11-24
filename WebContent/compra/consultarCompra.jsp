@@ -1,39 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="br.edu.udc.aplicada6.session.Session" %>
-<%@ page import="br.edu.udc.aplicada6.session.SessionVenda" %>
-<%@ page import="br.edu.udc.aplicada6.session.SessionCliente" %>
-<%@ page import="br.edu.udc.aplicada6.entity.Venda" %>
-<%@ page import="br.edu.udc.aplicada6.entity.Cliente" %>
+<%@ page import="br.edu.udc.aplicada6.session.SessionCompra" %>
+<%@ page import="br.edu.udc.aplicada6.session.SessionFornecedor" %>
+<%@ page import="br.edu.udc.aplicada6.entity.Compra" %>
+<%@ page import="br.edu.udc.aplicada6.entity.Fornecedor" %>
 <%
-	Venda vendaFilter = (Venda) request.getSession().getAttribute("filterVenda");
-	if (vendaFilter == null) {
-		vendaFilter = new Venda();
+	Compra CompraFilter = (Compra) request.getSession().getAttribute("filterCompra");
+	if (CompraFilter == null) {
+		CompraFilter = new Compra();
 	}
-	Object listVenda[] = (Object[]) request.getAttribute("list");
-	if (listVenda == null) {
-		listVenda = new Object[0];
-	}
-	
-	Object listCliente[] = (Object[]) request.getAttribute("listCliente");
-	if (listCliente == null) {
-		listCliente = new Object[0];
-	}
-/* 	
-	Object listModelo[] = (Object[]) request.getAttribute("listModelo");
-	if (listModelo == null) {
-		listModelo = new Object[0];
+	Object listCompra[] = (Object[]) request.getAttribute("list");
+	if (listCompra == null) {
+		listCompra = new Object[0];
 	}
 	
-	Object listCliente[] = (Object[]) request.getAttribute("listCliente");
-	if (listCliente == null) {
-		listCliente = new Object[0];
-	} */
+	Object listFornecedor[] = (Object[]) request.getAttribute("listFornecedor");
+	if (listFornecedor == null) {
+		listFornecedor = new Object[0];
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Consultar Venda</title>
+	<title>Consultar Compra</title>
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 	
 	<script type="text/javascript">		
@@ -65,6 +55,12 @@
 			document.getElementById("id").value = id;
 			document.getElementById("form").submit();
 		}
+		function additens(id) {
+			document.getElementById("entityName").value = "ItemCompra"
+			document.getElementById("newAction").value = "detail";
+			document.getElementById("idcompra").value = id;
+			document.getElementById("form").submit();
+		}	
 		
 		function removeGrid(id) {
 			if (confirm("Deseja Apagar o Registro?")) {
@@ -76,28 +72,29 @@
 	</script>	
 </head>
 <body>
-	<div class="divtitulopagina">Consultar Venda</div>
+	<div class="divtitulopagina">Consultar Compra</div>
 	<fieldset class="fieldset">
 		<form action="./dispatcher" method="post" name="form" id="form">
 			<input type="hidden" name="newAction" id="newAction">
 			<input type="hidden" name="id" id="id">
-			<input type="hidden" name="entityName" id="entityName" value="Venda">
+			<input type="hidden" name="idcompra" id="idcompra">
+			<input type="hidden" name="entityName" id="entityName" value="Compra">
 			<div class="label">Código:</div>
 			<div class="field">
-				<input value="<%=(vendaFilter.getIdVenda() != null) ? vendaFilter.getIdVenda() : ""%>" type="text" name="idVenda" id="idVenda" style="width:50px;" onkeypress="return onlyNumbers(event);" maxlength="9">
+				<input value="<%=(CompraFilter.getIdCompra() != null) ? CompraFilter.getIdCompra() : ""%>" type="text" name="idCompra" id="idCompra" style="width:50px;" onkeypress="return onlyNumbers(event);" maxlength="9">
 			</div>
 			<div class="label">Descricao:</div>
 			<div class="field">
-				<input value="<%=(vendaFilter.getDescricao() != null) ? vendaFilter.getDescricao() : ""%>" type="text" name="descricao" id="descricao" style="width:400px;" maxlength="100">
+				<input value="<%=(CompraFilter.getDescricao() != null) ? CompraFilter.getDescricao() : ""%>" type="text" name="descricao" id="descricao" style="width:400px;" maxlength="100">
 			</div>
 			<div class="label">Valor:</div>
 			<div class="field">
-				<input value="<%=(vendaFilter.getValor() != null) ? vendaFilter.getValor() : ""%>" type="text" name="valor" id="valor" style="width:400px;" maxlength="100">
+				<input value="<%=(CompraFilter.getValor() != null) ? CompraFilter.getValor() : ""%>" type="text" name="valor" id="valor" style="width:400px;" maxlength="100">
 			</div>
 
 <%-- 			<div class="label">Chassi:</div>
 			<div class="field">
-				<input value="<%=(vendaFilter.getChassi() != null) ? vendaFilter.getChassi() : ""%>" type="text" name="chassi" id="chassi" style="width:400px;" maxlength="100">
+				<input value="<%=(CompraFilter.getChassi() != null) ? CompraFilter.getChassi() : ""%>" type="text" name="chassi" id="chassi" style="width:400px;" maxlength="100">
 			</div>
 			<div class="label">Modelo:</div>
 			<div class="field">
@@ -118,39 +115,39 @@
 %>
 				</select>
 			</div>
-						<div class="label">Cliente:</div>
+						<div class="label">Fornecedor:</div>
 			<div class="field">
-				<select name="cliente" id="cliente" style="width:150px;">
+				<select name="Fornecedor" id="Fornecedor" style="width:150px;">
 					<option value=""></option>
 <%
-	for(int i=0; i<listCliente.length; i++) {
-		Cliente clienteAux = (Cliente) listCliente[i];
+	for(int i=0; i<listFornecedor.length; i++) {
+		Fornecedor FornecedorAux = (Fornecedor) listFornecedor[i];
 		Boolean bSelected = false;
-		if ((veiculoFilter.getCliente() != null) && 
-			(veiculoFilter.getCliente().getIdCliente() == clienteAux.getIdCliente())) {
+		if ((veiculoFilter.getFornecedor() != null) && 
+			(veiculoFilter.getFornecedor().getIdFornecedor() == FornecedorAux.getIdFornecedor())) {
 			bSelected = true;
 		}
 %>
-					<option <%=(bSelected) ? "selected" : "" %> value="<%=clienteAux.getIdCliente() %>"><%=clienteAux.getIdCliente() %></option>	
+					<option <%=(bSelected) ? "selected" : "" %> value="<%=FornecedorAux.getIdFornecedor() %>"><%=FornecedorAux.getIdFornecedor() %></option>	
 <%
 	}
 %>
 				</select>
 			</div> --%>
-									<div class="label">Cliente:</div>
+									<div class="label">Fornecedor:</div>
 			<div class="field">
-				<select name="cliente" id="cliente" style="width:150px;">
+				<select name="Fornecedor" id="Fornecedor" style="width:150px;">
 					<option value=""></option>
 <%
-	for(int i=0; i<listCliente.length; i++) {
-		Cliente clienteAux = (Cliente) listCliente[i];
+	for(int i=0; i<listFornecedor.length; i++) {
+		Fornecedor FornecedorAux = (Fornecedor) listFornecedor[i];
 		Boolean bSelected = false;
-		if ((vendaFilter.getCliente() != null) && 
-			(vendaFilter.getCliente().getIdCliente() == clienteAux.getIdCliente())) {
+		if ((CompraFilter.getFornecedor() != null) && 
+			(CompraFilter.getFornecedor().getIdFornecedor() == FornecedorAux.getIdFornecedor())) {
 			bSelected = true;
 		}
 %>
-					<option <%=(bSelected) ? "selected" : "" %> value="<%=clienteAux.getIdCliente() %>"><%=clienteAux.getIdCliente() %></option>	
+					<option <%=(bSelected) ? "selected" : "" %> value="<%=FornecedorAux.getIdFornecedor() %>"><%=FornecedorAux.getIdFornecedor() %></option>	
 <%
 	}
 %>
@@ -170,23 +167,25 @@
 				<th style="width:450px;">Descrição</th>
 <!-- 				<th>chassi</th> -->
 <!-- 				<th>modelo</th> -->
-<!-- 				<th>cliente</th> -->
+<!-- 				<th>Fornecedor</th> -->
 			</tr>
 		</table>
 		<div class="divtabela">
 			<table class="tabelaconteudo">
 <%
-	for(int i=0; i<listVenda.length; i++) {
-		Venda venda = (Venda) listVenda[i];
+	for(int i=0; i<listCompra.length; i++) {
+		Compra Compra = (Compra) listCompra[i];
 %>
 				<tr>
-					<td style="width:60px;"><%=venda.getIdVenda() %></td>
-					<td style="text-align: left; width:450px;"><%=venda.getDescricao() %></td>
+					<td style="width:60px;"><%=Compra.getIdCompra() %></td>
+					<td style="text-align: left; width:450px;"><%=Compra.getDescricao() %></td>
 <%-- 					<td style="text-align: left;"><%=veiculo.getChassi() %></td> --%>
 <%-- 					<td style="text-align: left;"><%=veiculo.getModelo().getDescricao() %></td> --%>
-<%-- 					<td style="text-align: left;"><%=veiculo.getCliente().getNome() %></td> --%>
-					<td class="tabelacolunaacao" onclick="detail('<%=venda.getIdVenda() %>');"><img src="./img/detail.gif" /></td>
-					<td class="tabelacolunaacao" onclick="removeGrid('<%=venda.getIdVenda() %>');"><img src="./img/remove.gif" /></td>
+<%-- 					<td style="text-align: left;"><%=veiculo.getFornecedor().getNome() %></td> --%>
+
+					<td class="tabelacolunaacao" onclick="additens('<%=Compra.getIdCompra() %>');">Add Produto</td>
+					<td class="tabelacolunaacao" onclick="detail('<%=Compra.getIdCompra() %>');"><img src="./img/detail.gif" /></td>
+					<td class="tabelacolunaacao" onclick="removeGrid('<%=Compra.getIdCompra() %>');"><img src="./img/remove.gif" /></td>
 				</tr>
 <%
 	}

@@ -44,6 +44,9 @@
 <div>
 	<a href="javascript:execute('Venda','goFind');">Venda</a>
 </div>
+<div>
+	<a href="javascript:execute('Compra','goFind');">Compra</a>
+</div>
 <div style="background: pink;">
 	<a href="javascript:doLogout();">Sair</a>
 </div>

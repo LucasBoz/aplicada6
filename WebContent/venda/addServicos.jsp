@@ -1,21 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="br.edu.udc.aplicada6.session.Session" %>
-<%@ page import="br.edu.udc.aplicada6.session.SessionVenda" %>
-<%@ page import="br.edu.udc.aplicada6.session.SessionItemVenda" %>
+<%@ page import="br.edu.udc.aplicada6.session.SessionServico" %>
+<%@ page import="br.edu.udc.aplicada6.session.SessionItemServico" %>
 <%@ page import="br.edu.udc.aplicada6.session.SessionProduto" %>
-<%@ page import="br.edu.udc.aplicada6.entity.Venda" %>
-<%@ page import="br.edu.udc.aplicada6.entity.ItemVenda" %>
+<%@ page import="br.edu.udc.aplicada6.session.SessionVenda" %>
+<%@ page import="br.edu.udc.aplicada6.entity.Servico" %>
+<%@ page import="br.edu.udc.aplicada6.entity.ItemServico" %>
 <%@ page import="br.edu.udc.aplicada6.entity.Produto" %>
+<%@ page import="br.edu.udc.aplicada6.entity.Venda" %>
 <%
 	String mensagem = (String) request.getAttribute("msg");
-	//ItemVenda ItemVenda = (ItemVenda) request.getAttribute("object");
-	//if (ItemVenda == null) {
-		ItemVenda ItemVenda = new ItemVenda();
+	//ItemServico ItemServico = (ItemServico) request.getAttribute("object");
+	//if (ItemServico == null) {
+		ItemServico ItemServico = new ItemServico();
 	//}
 	
-	Object listVenda[] = (Object[]) request.getAttribute("listVenda");
-	if (listVenda == null) {
-		listVenda = new Object[0];
+	Object listServico[] = (Object[]) request.getAttribute("listServico");
+	if (listServico == null) {
+		listServico = new Object[0];
 	}
 	
 	Object listProduto[] = (Object[]) request.getAttribute("listProduto");
@@ -23,9 +25,9 @@
 		listProduto = new Object[0];
 	}
 	
-	Object listItemVenda[] = (Object[]) request.getAttribute("listItemVenda");
-	if (listItemVenda == null) {
-		listItemVenda = new Object[0];
+	Object listItemServico[] = (Object[]) request.getAttribute("listItemServico");
+	if (listItemServico == null) {
+		listItemServico = new Object[0];
 	}
 	
 %>
@@ -33,7 +35,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Manter ItemVenda</title>
+	<title>Manter ItemServico</title>
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 	
 	<script type="text/javascript" src="./css/jquery.js"></script>
@@ -116,15 +118,15 @@
 	</script>	
 </head>
 <body onload="message();">
-	<div class="divtitulopagina">Add Items</div>
+	<div class="divtitulopagina">Add Servicos</div>
 	<fieldset class="fieldset">
 		<form action="./dispatcher" method="post" name="form" id="form">
 			<input type="hidden" name="newAction" id="newAction">
-			<input type="hidden" name="entityName" id="entityName" value="ItemVenda">
+			<input type="hidden" name="entityName" id="entityName" value="ItemServico">
 			<div class="label">Código:</div>
 			
 			<div class="field">
-				<input value="<%=(ItemVenda.getIditemVenda() != null) ? ItemVenda.getIditemVenda() : ""%>" type="text" name="idItemVenda" id="idItemVenda" style="width:50px;" readOnly maxlength="9">
+				<input value="<%=(ItemServico.getIditemServico() != null) ? ItemServico.getIditemServico() : ""%>" type="text" name="idItemServico" id="idItemServico" style="width:50px;" readOnly maxlength="9">
 			</div>
 			
 			
@@ -138,8 +140,8 @@
 		for(int i=0; i<listProduto.length; i++) {
 			Produto ProdutoAux = (Produto) listProduto[i];
 			Boolean bSelected = false;
-			if ((ItemVenda.getProduto() != null) && 
-				(ItemVenda.getProduto().getIdProduto() == ProdutoAux.getIdProduto())) {
+			if ((ItemServico.getProduto() != null) && 
+				(ItemServico.getProduto().getIdProduto() == ProdutoAux.getIdProduto())) {
 				bSelected = true;
 			}
 %>
@@ -151,13 +153,36 @@
 			</div>
 			
 			
+			
+			
+				<div class="label">Servico:</div>
+				
+				
+			<div class="field">
+				<select name="servico" id="servico" onChange="carregar(this)" style="width:150px;">
+					<option value=""></option>		
+			<%
+		for(int i=0; i<listServico.length; i++) {
+			Servico ServicoAux = (Servico) listServico[i];
+			Boolean bSelected = false;
+			if ((ItemServico.getServico() != null) && 
+				(ItemServico.getServico().getIdServico() == ServicoAux.getIdServico())) {
+				bSelected = true;
+			}
+%>
+					<option <%=(bSelected) ? "selected" : "" %> valor="<%=ServicoAux.getValor()%>" value="<%=ServicoAux.getIdServico()%>"><%=ServicoAux.getDescricao()%></option>				
+<%
+	}
+%>
+				</select>
+			</div>
 			<div class="label">Quantidade:</div>
 			<div class="field">
-				<input value="<%=(ItemVenda.getQuantidade() != null) ? ItemVenda.getQuantidade() : ""%>" type="text" name="quantidade" id="quantidade"  maxlength="100" readonly>
+				<input value="<%=(ItemServico.getQuantidade() != null) ? ItemServico.getQuantidade() : ""%>" type="text" name="quantidade" id="quantidade"  maxlength="100" readonly>
 			</div>
 			<div class="label">Valor:</div>
 			<div class="field">
-				<input value="<%=(ItemVenda.getValor() != null) ? ItemVenda.getValor() : ""%>" type="text" name="valor" id="valor" style="width:150px;" maxlength="100">
+				<input value="<%=(ItemServico.getValor() != null) ? ItemServico.getValor() : ""%>" type="text" name="valor" id="valor" style="width:150px;" maxlength="100">
 			</div>
 			
 			<div class="label">Venda:</div>
@@ -179,20 +204,20 @@
 <%-- 				<input value="<%=(Produto.getChassi() != null) ? Produto.getChassi() : ""%>" type="text" name="chassi" id="chassi" style="width:400px;" maxlength="100"> --%>
 <!-- 			</div> -->
 
-<!-- 						<div class="label">Venda:</div> -->
+<!-- 						<div class="label">Servico:</div> -->
 <!-- 			<div class="field"> -->
-<!-- 				<select name="Venda" id="Venda" style="width:150px;"> -->
+<!-- 				<select name="Servico" id="Servico" style="width:150px;"> -->
 <!-- 					<option value=""></option> -->
 <%
-// 	for(int i=0; i<listVenda.length; i++) {
-// 		Venda VendaAux = (Venda) listVenda[i];
+// 	for(int i=0; i<listServico.length; i++) {
+// 		Servico ServicoAux = (Servico) listServico[i];
 // 		Boolean bSelected = false;
-// 		if ((Produto.getVenda() != null) && 
-// 			(Produto.getVenda().getIdVenda() == VendaAux.getIdVenda())) {
+// 		if ((Produto.getServico() != null) && 
+// 			(Produto.getServico().getIdServico() == ServicoAux.getIdServico())) {
 // 			bSelected = true;
 // 		}
 %>
-<%-- 					<option <%=(bSelected) ? "selected" : "" %> value="<%=VendaAux.getIdVenda() %>"><%=VendaAux.getIdVenda() %></option>	 --%>
+<%-- 					<option <%=(bSelected) ? "selected" : "" %> value="<%=ServicoAux.getIdServico() %>"><%=ServicoAux.getIdServico() %></option>	 --%>
 <%
 // 	}
 %>
@@ -209,7 +234,8 @@
 				<th style="width:60px;">Código</th>
 				<th style="width:450px;">Quantidade</th>
 				<th style="width:450px;">valor</th>
-				<th style="width:450px;">Descricao</th>
+				<th style="width:450px;">Descricao Servico</th>
+				<th style="width:450px;">Descricao Produto</th>
 <!-- 				<th>chassi</th> -->
 <!-- 				<th>modelo</th> -->
 <!-- 				<th>cliente</th> -->
@@ -218,21 +244,21 @@
 				<div class="divtabela">
 			<table class="tabelaconteudo">
 <%
-	for(int i=0; i<listItemVenda.length; i++) {
-		ItemVenda itemVenda = (ItemVenda) listItemVenda[i];
+	for(int i=0; i<listItemServico.length; i++) {
+		ItemServico itemServico = (ItemServico) listItemServico[i];
 		
-		float total =+ itemVenda.getValor();	
-		if(Integer.parseInt(request.getParameter("id")) == itemVenda.getVenda().getIdVenda()){
+		float total =+ itemServico.getValor();	
+		if(Integer.parseInt(request.getParameter("id")) == itemServico.getVenda().getIdVenda()){
 		
 %>		
 
 				<tr>
-					<td style="width:60px;"><%=itemVenda.getIditemVenda() %></td>
-					<td style="text-align: left; width:450px;"><%=itemVenda.getQuantidade() %></td>
-					<td style="text-align: left; width:450px;"><%=itemVenda.getValor() %></td>
-					<td style="text-align: left; width:450px;"><%=itemVenda.getProduto().getDescricao() %></td>
-					
-					<td class="tabelacolunaacao" onclick="removeGrid('<%=itemVenda.getIditemVenda() %>');"><img src="./img/remove.gif" /></td>
+					<td style="width:60px;"><%=itemServico.getIditemServico() %></td>
+					<td style="text-align: left; width:450px;"><%=itemServico.getQuantidade() %></td>
+					<td style="text-align: left; width:450px;"><%=itemServico.getValor() %></td>
+					<td style="text-align: left; width:450px;"><%=itemServico.getServico().getDescricao() %></td>
+					<td style="text-align: left; width:450px;"><%=itemServico.getProduto().getDescricao() %></td>
+					<td class="tabelacolunaacao" onclick="removeGrid('<%=itemServico.getIditemServico() %>');"><img src="./img/remove.gif" /></td>
 				</tr>
 <%
 		}

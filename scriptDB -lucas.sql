@@ -8,7 +8,7 @@ CREATE TABLE modelo
 (
 	idmodelo serial PRIMARY KEY,
 	descricao character varying NOT NULL,
-	idmarca integer REFERENCES marca (id) NOT NULL 
+	idmarca integer REFERENCES marca (idmarca) NOT NULL 
 );
 
 CREATE TABLE usuario 
@@ -35,8 +35,8 @@ CREATE TABLE veiculo (
 	idveiculo serial PRIMARY KEY,
 	placa character varying NOT NULL,
 	chassi character varying NOT NULL,
-	idmodelo integer REFERENCES modelo(id),
-	idcliente integer REFERENCES cliente(id),
+	idmodelo integer REFERENCES modelo(idmodelo),
+	idcliente integer REFERENCES cliente(idcliente),
 	cor character varying NOT NULL
 );
  
@@ -73,9 +73,9 @@ CREATE TABLE compra
   datac character varying,
   valor double precision,
   fornecedor integer,
-  CONSTRAINT compra_pkey PRIMARY KEY (id),
+  CONSTRAINT compra_pkey PRIMARY KEY (idcompra),
   CONSTRAINT compra_fornecedor_fkey FOREIGN KEY (fornecedor)
-      REFERENCES fornecedor (id) MATCH SIMPLE
+      REFERENCES fornecedor (idfornecedor) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
@@ -86,20 +86,20 @@ CREATE TABLE itemservico
   valor double precision,
   servico integer,
   produto integer,
-  CONSTRAINT itemservico_pkey PRIMARY KEY (id),
+  CONSTRAINT itemservico_pkey PRIMARY KEY (iditemservico),
   CONSTRAINT itemservico_produto_fkey FOREIGN KEY (produto)
-      REFERENCES produto (id) MATCH SIMPLE
+      REFERENCES produto (idproduto) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT itemservico_servico_fkey FOREIGN KEY (servico)
-      REFERENCES servico (id) MATCH SIMPLE
+      REFERENCES servico (idservico) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 CREATE TABLE itemcompra
 (
 	iditemcompra serial PRIMARY KEY,
-	compra integer REFERENCES compra (id),
-	produto integer REFERENCES produto (id),
+	compra integer REFERENCES compra (idcompra),
+	produto integer REFERENCES produto (idproduto),
 	quantidade integer NOT NULL, 
 	valor float NOT NULL
 );
@@ -111,17 +111,17 @@ CREATE TABLE venda
   datac character varying,
   valor double precision,
   veiculo integer,
-  CONSTRAINT venda_pkey PRIMARY KEY (id),
+  CONSTRAINT venda_pkey PRIMARY KEY (idvenda),
   CONSTRAINT venda_veiculo_fkey FOREIGN KEY (veiculo)
-      REFERENCES fornecedor (id) MATCH SIMPLE
+      REFERENCES fornecedor (idfornecedor) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 CREATE TABLE itemvenda
 (
 	iditemvenda serial PRIMARY KEY,
-	venda integer REFERENCES venda(id),
-	produto integer REFERENCES produto (id),
+	venda integer REFERENCES venda(idvenda),
+	produto integer REFERENCES produto (idproduto),
 	quantidade integer NOT NULL, 
 	valor float NOT NULL
 );

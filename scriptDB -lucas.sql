@@ -1,4 +1,5 @@
 CREATE DATABASE aplicada6; 
+
 CREATE TABLE marca
 (	idMarca serial PRIMARY KEY,
 	descricao character varying

@@ -18,11 +18,9 @@ public class ControllerVenda extends Controller {
 	@Override
 	public void goNew() throws Exception {
 		try {
-			SessionVenda sessionVenda = new SessionVenda();
 			SessionCliente sessionCliente = new SessionCliente();
 			SessionVeiculo sessionVeiculo = new SessionVeiculo();
 			
-			request.setAttribute("listVenda",sessionVenda.find(new Venda()));
 			request.setAttribute("listCliente",sessionCliente.find(new Cliente()));
 			request.setAttribute("listVeiculo",sessionVeiculo.find(new Veiculo()));
 		} catch (Exception e) {
@@ -33,9 +31,9 @@ public class ControllerVenda extends Controller {
 	@Override
 	public void goFind() throws Exception {
 		try {
-			SessionVenda sessionVenda = new SessionVenda();
+			SessionVeiculo sessionVeiculo = new SessionVeiculo();
 			SessionCliente sessionCliente = new SessionCliente();
-			request.setAttribute("listVenda",sessionVenda.find(new Venda()));
+			request.setAttribute("listVeiculo",sessionVeiculo.find(new Veiculo()));
 			request.setAttribute("listCliente",sessionCliente.find(new Cliente()));
 			
 		} catch (Exception e) {

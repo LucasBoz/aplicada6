@@ -88,7 +88,7 @@
 				<th style="width:100px;">Valor</th>
 				<th style="width:100px;">Quantidade</th>
 			
-				<th style="width:43px"> </th>
+				<th style="width:43px">Op</th>
 			</tr>
 		</table>
 		<div class="divtabela">

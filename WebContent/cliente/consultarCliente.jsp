@@ -92,7 +92,10 @@
 		<table class="tabelatitulo">
 			<tr>
 				<th style="width:60px;">Código</th>
-				<th>Descrição</th>
+				<th style="width:336px;">Nome</th>
+				<th style="width:124px;">CPF</th>
+				<th style="width:196px;">CEP</th>
+				<th style="width:43px;">Op</th>	
 			</tr>
 		</table>
 		<div class="divtabela">

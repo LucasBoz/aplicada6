@@ -111,7 +111,8 @@
 			<tr>
 				<th style="width:60px;">Código</th>
 				<th style="width:450px;">Descrição</th>
-				<th>Marca</th>
+				<th style="width:209x;">Marca</th>
+				<th style="width:43px;">Op</th>
 			</tr>
 		</table>
 		<div class="divtabela">

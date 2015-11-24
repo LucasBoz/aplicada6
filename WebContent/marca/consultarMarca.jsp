@@ -84,7 +84,8 @@
 		<table class="tabelatitulo">
 			<tr>
 				<th style="width:60px;">Código</th>
-				<th>Descrição</th>
+				<th style="width:662px;">Descrição</th>
+				<th style="width:42px;">Op</th>
 			</tr>
 		</table>
 		<div class="divtabela">

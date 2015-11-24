@@ -88,8 +88,9 @@
 		<table class="tabelatitulo">
 			<tr>
 				<th style="width:60px;">Código</th>
-				<th>Razão Social</th>
-				<th>CNPJ</th>
+				<th style="width:428px;">Razão Social</th>
+				<th style="width:231px;">CNPJ</th>
+				<th style="width:43px;">Op</th>
 			</tr>
 		</table>
 		<div class="divtabela">
@@ -101,7 +102,7 @@
 				<tr>
 					<td style="width:60px;"><%=fornecedor.getIdFornecedor() %></td>
 					<td style="text-align: left;"><%=fornecedor.getRazaoSocial() %></td>
-					<td style="text-align: left;"><%=fornecedor.getCnpj()%></td>
+					<td style="text-align: left; width:231px;"><%=fornecedor.getCnpj()%></td>
 					<td class="tabelacolunaacao" onclick="detail('<%=fornecedor.getIdFornecedor() %>');"><img src="./img/detail.gif" /></td>
 					<td class="tabelacolunaacao" onclick="removeGrid('<%=fornecedor.getIdFornecedor() %>');"><img src="./img/remove.gif" /></td>
 				</tr>

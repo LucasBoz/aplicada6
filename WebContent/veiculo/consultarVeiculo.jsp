@@ -139,10 +139,11 @@
 		<table class="tabelatitulo">
 			<tr>
 				<th style="width:60px;">Código</th>
-				<th style="width:450px;">Placa</th>
-				<th>chassi</th>
-				<th>modelo</th>
+				<th style="width:250px;">Placa</th>
+				<th style="width:138px;">chassi</th>
+				<th style="width:135px;">modelo</th>
 				<th>cliente</th>
+				<th style="width:43px;">Op</th>
 			</tr>
 		</table>
 		<div class="divtabela">
@@ -154,10 +155,10 @@
 %>
 				<tr>
 					<td style="width:60px;"><%=veiculo.getIdVeiculo() %></td>
-					<td style="text-align: left; width:450px;"><%=veiculo.getPlaca() %></td>
-					<td style="text-align: left;"><%=veiculo.getChassi() %></td>
-					<td style="text-align: left;"><%=veiculo.getModelo().getDescricao() %></td>
-					<td style="text-align: left;"><%=veiculo.getCliente().getNome() %></td>
+					<td style="text-align: left; width:250px;"><%=veiculo.getPlaca() %></td>
+					<td style="text-align: left; width:138px;"><%=veiculo.getChassi() %></td>
+					<td style="text-align: left; width:135px;"><%=veiculo.getModelo().getDescricao() %></td>
+					<td style="text-align: left; "><%=veiculo.getCliente().getNome() %></td>
 					<td class="tabelacolunaacao" onclick="detail('<%=veiculo.getIdVeiculo() %>');"><img src="./img/detail.gif" /></td>
 					<td class="tabelacolunaacao" onclick="removeGrid('<%=veiculo.getIdVeiculo() %>');"><img src="./img/remove.gif" /></td>
 				</tr>

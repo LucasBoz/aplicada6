@@ -4,11 +4,15 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.edu.udc.aplicada6.annotation.Column;
+import br.edu.udc.aplicada6.annotation.Entity;
 import br.edu.udc.aplicada6.annotation.GeneratedValue;
 import br.edu.udc.aplicada6.annotation.Id;
+import br.edu.udc.aplicada6.annotation.Table;
 
 //Venda (idVenda, Cliente, Veiculo, Lista de ItemVenda,
 //Lista de ItemServico, data, descricao, valor)
+@Entity
+@Table(tableName="venda")
 public class Venda {
 	
 	@Id
@@ -26,8 +30,8 @@ public class Venda {
 	
 	private List<ItemServico> listItemServico;*/
 	
-	@Column(name="data",type=Column.DATE)
-	private Calendar data;
+	@Column(name="datav",type=Column.DATE)
+	private Calendar datav;
 	
 	@Column(name="descricao", nullable=false, type=Column.STRING)
 	private String descricao;
@@ -75,12 +79,12 @@ public class Venda {
 		this.listItemServico = listItemServico;
 	}
 */
-	public Calendar getData() {
-		return data;
+	public Calendar getDatav() {
+		return datav;
 	}
 
-	public void setData(Calendar data) {
-		this.data = data;
+	public void setDatav(Calendar datav) {
+		this.datav = datav;
 	}
 
 	public String getDescricao() {
@@ -105,17 +109,25 @@ public class Venda {
 
 	public Venda(Integer idVenda, Cliente cliente, Veiculo veiculo,
 /*			List<ItemVenda> listItemVenda, List<ItemServico> listItemServico,*/
-			Calendar data, String descricao, Float valor) {
+			Calendar datav, String descricao, Float valor) {
 		super();
 		this.idVenda = idVenda;
 		this.cliente = cliente;
 		this.veiculo = veiculo;
 /*		this.listItemVenda = listItemVenda;
 		this.listItemServico = listItemServico;*/
-		this.data = data;
+		this.datav = datav;
 		this.descricao = descricao;
 		this.valor = valor;
 /*		this.itemVenda = itemVenda;*/
 	}
+
+	@Override
+	public String toString() {
+		return "Venda [idVenda=" + idVenda + ", cliente=" + cliente + ", veiculo=" + veiculo + ", datav=" + datav
+				+ ", descricao=" + descricao + ", valor=" + valor + "]";
+	}
+	
+	
 	
 }

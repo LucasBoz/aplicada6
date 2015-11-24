@@ -106,15 +106,12 @@ CREATE TABLE itemcompra
 
 CREATE TABLE venda
 (
-  idvenda serial NOT NULL,
+  idvenda serial NOT NULL PRIMARY KEY,
   descricao character varying NOT NULL,
   datac character varying,
   valor double precision,
-  veiculo integer,
-  CONSTRAINT venda_pkey PRIMARY KEY (id),
-  CONSTRAINT venda_veiculo_fkey FOREIGN KEY (veiculo)
-      REFERENCES fornecedor (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
+  idcliente integer REFERENCES cliente,
+  idveiculo integer REFERENCES veiculo
 );
 
 CREATE TABLE itemvenda

@@ -65,7 +65,12 @@
 			document.getElementById("id").value = id;
 			document.getElementById("form").submit();
 		}
-		
+		function additens(id) {
+			document.getElementById("entityName").value = "ItemVenda"
+			document.getElementById("newAction").value = "detail";
+			document.getElementById("id").value = id;
+			document.getElementById("form").submit();
+		}	
 		function removeGrid(id) {
 			if (confirm("Deseja Apagar o Registro?")) {
 				document.getElementById("newAction").value = "remove";
@@ -185,6 +190,7 @@
 <%-- 					<td style="text-align: left;"><%=veiculo.getChassi() %></td> --%>
 <%-- 					<td style="text-align: left;"><%=veiculo.getModelo().getDescricao() %></td> --%>
 <%-- 					<td style="text-align: left;"><%=veiculo.getCliente().getNome() %></td> --%>
+					<td class="tabelacolunaacao" onclick="additens('<%=venda.getIdVenda() %>');">Add Produtos</td>
 					<td class="tabelacolunaacao" onclick="detail('<%=venda.getIdVenda() %>');"><img src="./img/detail.gif" /></td>
 					<td class="tabelacolunaacao" onclick="removeGrid('<%=venda.getIdVenda() %>');"><img src="./img/remove.gif" /></td>
 				</tr>

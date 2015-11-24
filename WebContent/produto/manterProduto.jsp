@@ -81,7 +81,7 @@
 			</div>
 			<div class="label">Quantidade:</div>
 			<div class="field">
-				<input value="<%=(produto.getQuantidade() != null) ? produto.getQuantidade() : ""%>" type="number"fnname="quantidade" id="quantidade" style="width:400px;" maxlength="100">
+				<input value="<%=(produto.getQuantidade() != null) ? produto.getQuantidade() : ""%>" type="number" name="quantidade" id="quantidade" style="width:400px;" maxlength="100">
 			</div>
 			<div class="divbotoes">
 				<input type="button" value="Salvar" onclick="save();">

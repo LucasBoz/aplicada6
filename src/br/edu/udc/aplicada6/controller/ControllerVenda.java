@@ -57,7 +57,7 @@ public class ControllerVenda extends Controller {
 		request.setAttribute("object",obj);
 		this.goNew();
 	}
-	
+
 	@Override
 	public void find(Object obj) throws Exception {
 		request.setAttribute("list",obj);

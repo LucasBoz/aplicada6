@@ -4,6 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>SISTEMA APLICADA 6</title>
+	<script type="text/javascript" src="./css/jquery.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 </head>
 <body>

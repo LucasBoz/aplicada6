@@ -22,7 +22,7 @@ public class Produto {
 	@Column(name="valor",type=Column.FLOAT,length=100)
 	private Float valor;
 	
-	@Column(name="quantidade",type=Column.INTEGER,length=100)
+	@Column(name="quantidade",type=Column.INTEGER)
 	private Integer quantidade;
 		
 
@@ -54,8 +54,8 @@ public class Produto {
 		return quantidade;
 	}
 
-	public void setQuantidade(Integer quatidade) {
-		this.quantidade = quatidade;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public Produto() {

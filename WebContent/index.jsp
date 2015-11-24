@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Sistema Aplicada 6</title>
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
-	
+	<script type="text/javascript" src="./css/jquery.js"></script>
 	<script type="text/javascript">		
 		function doLogin() {
 			document.getElementById("newAction").value = "login";

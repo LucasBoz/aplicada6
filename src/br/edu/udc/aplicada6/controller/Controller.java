@@ -128,6 +128,6 @@ public abstract class Controller {
 	public abstract void remove(Object obj) throws Exception;
 
 	public abstract void detail(Object obj) throws Exception;
-
+	
 	public abstract void find(Object obj) throws Exception;
 }

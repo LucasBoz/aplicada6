@@ -107,20 +107,6 @@ public class Venda {
 		super();
 	}
 
-	public Venda(Integer idVenda, Cliente cliente, Veiculo veiculo,
-/*			List<ItemVenda> listItemVenda, List<ItemServico> listItemServico,*/
-			Calendar datav, String descricao, Float valor) {
-		super();
-		this.idVenda = idVenda;
-		this.cliente = cliente;
-		this.veiculo = veiculo;
-/*		this.listItemVenda = listItemVenda;
-		this.listItemServico = listItemServico;*/
-		this.datav = datav;
-		this.descricao = descricao;
-		this.valor = valor;
-/*		this.itemVenda = itemVenda;*/
-	}
 
 	@Override
 	public String toString() {
